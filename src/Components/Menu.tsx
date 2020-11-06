@@ -1,9 +1,13 @@
-import React, { Dispatch, SetStateAction } from 'react';
+import React from 'react';
 import { Games } from '../Constants/Game';
+import { GameType } from '../interfaces';
 
-const Menu = ({ onGameChange }: { onGameChange: Dispatch<SetStateAction<string>> }) => {
+const Menu = ({ onGameChange }: { onGameChange: React.Dispatch<React.SetStateAction<GameType>> }) => {
     const onChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-        onGameChange(event.target.value);
+        const gameType = Games.find((g) => g.id === event.target.value);
+        if (gameType) {
+            onGameChange(gameType);
+        }
     }
     return <div className="menu">
         <select onChange={onChange}>

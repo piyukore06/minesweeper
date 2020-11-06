@@ -1,19 +1,13 @@
 import React from 'react';
 import { GameContext } from '../App';
+import { GameType } from '../interfaces';
 
 const Display = (props: { value: number }) => {
     return <div>{props.value}</div>
 }
-const Header = () => {
+const Header = ({ gameType }: { gameType: GameType }) => {
     return <div className="header">
-        <GameContext.Consumer>
-            {(game) => {
-                if (game) {
-                    return <Display value={game.numberOfMines} />
-                }
-                return null;
-            }}
-        </GameContext.Consumer>
+        <Display value={gameType.numberOfMines} />
         <button>:)</button>
         <Display value={100} />
     </div>

@@ -6,6 +6,7 @@ import Playground from './Components/Playground';
 import { Games } from './Constants/Game';
 
 export const GameContext = React.createContext(Games.find((game) => game.id === 'beginner'));
+GameContext.displayName = 'GameContext';
 
 // create a flex container
 // create a menu of dropdowns
@@ -17,15 +18,13 @@ export const GameContext = React.createContext(Games.find((game) => game.id === 
 // think about how to use xstate and state mgmt
 
 function App() {
-  const [gameId, setGameId] = useState('beg');
+  const [gameType, setGameType] = useState(Games[0]);
   return (
     <div className="body">
       <div className="flex-container">
-        <GameContext.Provider value={Games.find((game) => game.id === gameId)}>
-          <Menu onGameChange={setGameId} />
-          <Header />
-          <Playground />
-        </GameContext.Provider>
+        <Menu onGameChange={setGameType} />
+        <Header gameType={gameType} />
+        <Playground gameType={gameType} />
       </div>
     </div>
   );
