@@ -1,6 +1,3 @@
-div {
-  outline: 1px solid red;
-}
 :root {
   --tile-size: 45px;
   --number-of-rows: 9;
@@ -13,9 +10,11 @@ div {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  height: 100vh;
 }
 
-.header, .menu {
+.header,
+.menu {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -32,8 +31,14 @@ div {
 .tile {
   height: var(--tile-size);
   width: var(--tile-size);
+  padding: 0;
+  border: 0;
 }
 
+.tile-image {
+  height: inherit;
+  width: inherit;
+}
 .special {
   font-size: xx-small;
   display: block;

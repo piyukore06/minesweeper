@@ -10,12 +10,13 @@ GameContext.displayName = 'GameContext';
 
 function App() {
   const [gameType, setGameType] = useState(Games[0]);
+  const [gameState, setGameState] = useState(':)');
   return (
     <div className="body">
       <div className="flex-container">
         <Menu onGameChange={setGameType} />
-        <Header gameType={gameType} onGameChange={setGameType} />
-        <Playground gameType={gameType} />
+        <Header gameState={gameState} gameType={gameType} onGameChange={setGameType} />
+        <Playground onGameStateChange={setGameState} gameType={gameType} />
       </div>
     </div>
   );
