@@ -34,3 +34,8 @@ div {
   width: var(--tile-size);
 }
 
+.special {
+  font-size: xx-small;
+  display: block;
+  padding-top: 5px;
+}

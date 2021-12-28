@@ -1,9 +1,10 @@
-import { GameType, Place, TileState } from "../interfaces";
+import { GameState, GameType, Place, TileState } from "../interfaces";
 
 export const Games: GameType[] = [
-    { id: 'beginner', numberOfRows: 9, numberOfColumns: 9, numberOfMines: 10 },
-    { id: 'intermediate', numberOfRows: 16, numberOfColumns: 16, numberOfMines: 40 },
-    { id: 'expert', numberOfRows: 16, numberOfColumns: 30, numberOfMines: 99 },
+    // { id: 'mini', numberOfRows: 4, numberOfColumns: 4, numberOfMines: 3, state: GameState.START },
+    { id: 'beginner', numberOfRows: 9, numberOfColumns: 9, numberOfMines: 10, state: GameState.START },
+    { id: 'intermediate', numberOfRows: 16, numberOfColumns: 16, numberOfMines: 40, state: GameState.START },
+    { id: 'expert', numberOfRows: 16, numberOfColumns: 30, numberOfMines: 99, state: GameState.START },
 ];
 
 export const createInitialState = ({ numberOfRows, numberOfColumns, numberOfMines }: GameType): TileState[][] => {
@@ -17,6 +18,7 @@ export const createInitialState = ({ numberOfRows, numberOfColumns, numberOfMine
                 id,
                 value: allMines[id] ? 'M' : getTileValue(allMines, current, max),
                 isShown: false,
+                isMarked: false,
             }
         })
     });

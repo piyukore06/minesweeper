@@ -1,14 +1,16 @@
 import React from 'react';
-import { GameContext } from '../App';
 import { GameType } from '../interfaces';
 
 const Display = (props: { value: number }) => {
     return <div>{props.value}</div>
 }
-const Header = ({ gameType }: { gameType: GameType }) => {
+const Header = ({ gameType, onGameChange }: { gameType: GameType, onGameChange: React.Dispatch<React.SetStateAction<GameType>> }) => {
+    const newGame = () => {
+        onGameChange(gameType)
+    }
     return <div className="header">
         <Display value={gameType.numberOfMines} />
-        <button>:)</button>
+        <button onClick={newGame} >:)</button>
         <Display value={100} />
     </div>
 }
