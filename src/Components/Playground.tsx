@@ -32,10 +32,21 @@ class Playground extends React.Component<Props, State> {
         const [rowIndex, columnIndex] = tile.id.split('_').map(Number);
         const place = { rowIndex, columnIndex }
         const { tiles } = this.state;
+        const { gameType } = this.props;
         if (e.type === 'contextmenu') {
             e.preventDefault();
-            this.setState({ tiles: this.markTile(tiles, place) });
+            const newtiles = this.markToggleTile(tiles, place);
+            this.setState({ tiles: newtiles });
+            const marked = newtiles.flat().filter((x) => x.isMarked);
+            const markedMines = newtiles.flat().filter((x) => x.isMarked && x.value === 'M');
+            const won = markedMines.length === gameType.numberOfMines;
+            if (won) {
+                this.setState({ gameState: GameState.WON });
+            } else if (marked.length === gameType.numberOfMines) {
+                this.setState({ gameState: GameState.LOST });
+            }
         }
+
     }
 
     showOrExplode = (tile: TileState) => {
@@ -123,13 +134,13 @@ class Playground extends React.Component<Props, State> {
         ]
     }
 
-    markTile = (tiles: TileState[][], { rowIndex, columnIndex }: Place) => {
+    markToggleTile = (tiles: TileState[][], { rowIndex, columnIndex }: Place) => {
         if (tiles[rowIndex][columnIndex].isShown) {
             return tiles;
         }
         return [
             ...tiles.slice(0, rowIndex),
-            [...tiles[rowIndex].slice(0, columnIndex), { ...tiles[rowIndex][columnIndex], isMarked: true }, ...tiles[rowIndex].slice(columnIndex + 1)],
+            [...tiles[rowIndex].slice(0, columnIndex), { ...tiles[rowIndex][columnIndex], isMarked: !tiles[rowIndex][columnIndex].isMarked }, ...tiles[rowIndex].slice(columnIndex + 1)],
             ...tiles.slice(rowIndex + 1),
         ]
     }

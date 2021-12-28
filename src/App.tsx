@@ -12,7 +12,7 @@ function App() {
   const [gameType, setGameType] = useState(Games[0]);
   const [gameState, setGameState] = useState(':)');
   return (
-    <div className="body">
+    <div style={{ backgroundImage: `url(/images/bluemoon.png)` }} className="body">
       <div className="flex-container">
         <Menu onGameChange={setGameType} />
         <Header gameState={gameState} gameType={gameType} onGameChange={setGameType} />
