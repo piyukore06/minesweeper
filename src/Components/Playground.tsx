@@ -170,6 +170,7 @@ class Playground extends React.Component<Props, State> {
 
             return <> 
             { won && <Confetti /> }
+            { lost && <span className="won">You Lost</span> }
             <div className="playground">
                 {tiles.map((row) =>
                     row.map(
