@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './App.css';
 import Header from './Components/Header';
 import Menu from './Components/Menu';
+import Octocat from './Components/Octocat';
 import Playground from './Components/Playground';
 import { Games } from './Constants/Game';
 
@@ -10,9 +11,10 @@ GameContext.displayName = 'GameContext';
 
 function App() {
   const [gameType, setGameType] = useState(Games[0]);
-  const [gameState, setGameState] = useState(':)');
+  const [gameState, setGameState] = useState('🙂');
   return (
     <div style={{ backgroundImage: `url(/images/bluemoon.png)` }} className="body">
+      <Octocat />
       <div className="flex-container">
         <Menu onGameChange={setGameType} />
         <Header gameState={gameState} gameType={gameType} onGameChange={setGameType} />
