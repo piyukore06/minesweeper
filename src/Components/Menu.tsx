@@ -11,7 +11,6 @@ const Menu = ({ onGameChange }: { onGameChange: React.Dispatch<React.SetStateAct
     }
         
         return <>
-        <h1>Minesweeper</h1>
         <div className="menu">
             <select onChange={onChange}>
                 <option value="0">Game:</option>
