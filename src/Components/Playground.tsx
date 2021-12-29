@@ -27,6 +27,7 @@ class Playground extends React.Component<Props, State> {
         document.documentElement.style.setProperty('--number-of-columns', gameType.numberOfColumns + '');
         const tiles = createInitialState(gameType);
         this.setState({ tiles, gameState: GameState.PLAYING });
+        this.props.onGameStateChange('🙂');
     }
 
     onRightClick = (tile: TileState, e: React.MouseEvent) => {
