@@ -9,14 +9,18 @@ const Menu = ({ onGameChange }: { onGameChange: React.Dispatch<React.SetStateAct
             onGameChange(gameType);
         }
     }
-    return <div className="menu">
-        <select onChange={onChange}>
-            <option value="0">Game:</option>
-            {Games.map((game) => (
-                <option key={game.id} value={game.id}>{game.id}</option>
-            ))}
-        </select>
-    </div>
+        
+        return <>
+        <h1>Minesweeper</h1>
+        <div className="menu">
+            <select onChange={onChange}>
+                <option value="0">Game:</option>
+                {Games.map((game) => (
+                    <option key={game.id} value={game.id}>{game.id}</option>
+                ))}
+            </select>
+        </div>
+    </>
 }
 
 export default Menu;

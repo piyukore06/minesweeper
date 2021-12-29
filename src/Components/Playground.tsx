@@ -1,6 +1,7 @@
 import React from 'react';
 import { createInitialState } from '../Constants/Game';
 import { GameType, TileState, Place, GameState } from '../interfaces';
+import Confetti from './Confetti';
 
 type Props = { gameType: GameType, onGameStateChange: any };
 type State = { tiles: TileState[][], gameState: GameState };
@@ -42,8 +43,10 @@ class Playground extends React.Component<Props, State> {
             const won = markedMines.length === gameType.numberOfMines;
             if (won) {
                 this.setState({ gameState: GameState.WON });
+                this.props.onGameStateChange('😄');
             } else if (marked.length === gameType.numberOfMines) {
                 this.setState({ gameState: GameState.LOST });
+                this.props.onGameStateChange('😕');
             }
         }
 
@@ -56,7 +59,7 @@ class Playground extends React.Component<Props, State> {
         if (tile.value === 'M') {
             // Expode
             this.setState({ gameState: GameState.LOST });
-            this.props.onGameStateChange(':(')
+            this.props.onGameStateChange('😕');
         } else if (tile.value === 0) {
             const sNewTiles = this.pointer('top', tiles, place)
             const t = this.pointer('left', sNewTiles, place);
@@ -162,11 +165,15 @@ class Playground extends React.Component<Props, State> {
     render() {
         if (this.state) {
             const { gameState, tiles } = this.state;
-            return <div className="playground">
+            const lost = gameState === GameState.LOST;
+            const won = gameState === GameState.WON;
+
+            return <> 
+            { won && <Confetti /> }
+            <div className="playground">
                 {tiles.map((row) =>
                     row.map(
                         (tile) => {
-                            const lost = gameState === GameState.LOST;
                             const explode = lost && tile.value === 'M';
                             const backgroundColor = tile.isShown ? explode ? 'crimson' : '' : 'blue';
                             return (<button
@@ -183,6 +190,7 @@ class Playground extends React.Component<Props, State> {
                     )
                 )}
             </div>
+            </>
         }
         return null;
     }

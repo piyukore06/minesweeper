@@ -52,6 +52,11 @@
   color: white;
 }
 
+h1 {
+  color: white;
+  font-family: 'Gwendolyn', cursive;
+  font-size: xxx-large;
+}
 select {
   height: 25px;
   border-radius: 5px;
@@ -63,4 +68,9 @@ select {
   border: 0;
   background: white;
   border-radius: 3px;
+  padding-right: 7px;
+}
+
+.won {
+  color: white;
 }
