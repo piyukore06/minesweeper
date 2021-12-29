@@ -167,13 +167,6 @@ const getTileValue = (
   ].filter(Boolean).length;
 };
 
-const isIndexValid = (index: number, maxIndex: number) => {
-  return !(index < 0 || index >= maxIndex);
-};
-
-const isIndexDefined = (index: number | undefined | false): index is number =>
-  index !== false && index !== undefined;
-
 const ifPlaceHasMine = (
   allMines: any,
   place: Place,
